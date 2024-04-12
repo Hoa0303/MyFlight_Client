@@ -2,12 +2,16 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MyCalendar from './Calendar';
 import { Container } from 'react-bootstrap';
+import { useLocation } from 'react-router-dom';
 
-const BookForm = () => {
+
+const BookFormMini = () => {
+    const location = useLocation();
+    const formData = location.state?.formData;
     const navigate = useNavigate();
-    const [departurePoint, setDeparturePoint] = useState('Hồ Chí Minh');
-    const [destination, setDestination] = useState('Hà Nội');
-    const [passengers, setPassengers] = useState(1);
+    const [departurePoint, setDeparturePoint] = useState(formData.departurePoint);
+    const [destination, setDestination] = useState(formData.destination);
+    const [passengers, setPassengers] = useState(formData.passengers);
     const [showDepartureOptions, setShowDepartureOptions] = useState(false);
     const [showDestinationOptions, setShowDestinationOptions] = useState(false);
     const [calendarValue, setCalendarValue] = useState([]);
@@ -39,61 +43,46 @@ const BookForm = () => {
             calendarValue: calendarValue,
             // Thêm các trường dữ liệu khác vào đây nếu cần
         };
-        // console.log("Form data:", data);
 
         navigate('/search', { state: { formData: data } });
     };
 
     return (
         <Container>
-            <h1 className="project-heading">
-                <strong className="purple">Book Ticket</strong>
-            </h1>
-            <form className="mb-3 BookForm" onSubmit={handleFormSubmit}>
+            <form className="mb-3 BookFormMini" onSubmit={handleFormSubmit}>
                 <div className="card card-body ">
                     {/* Row 1 */}
                     <div className="row">
-                        <div className="col-12 col-md-3" onClick={() => setShowDepartureOptions(!showDepartureOptions)}>
+                        <div className="col-12" onClick={() => setShowDepartureOptions(!showDepartureOptions)}>
                             <div className="mb-3">
                                 <label htmlFor="selectedDer" className="form-label">Departure point</label>
                                 <input name="Departurepoint" type="text" className="form-control pointer" id="selectedDer" value={departurePoint} readOnly />
                             </div>
                         </div>
-                        <div className="col-12 col-md-3" onClick={() => setShowDestinationOptions(!showDestinationOptions)}>
+                        <div className="col-12" onClick={() => setShowDestinationOptions(!showDestinationOptions)}>
                             <div className="mb-3">
                                 <label data-translate="destination" htmlFor="exampleFormControlInput1" className="form-label">Destination</label>
                                 <input name="Destination" type="text" className="form-control pointer" id="selectedDes" value={destination} readOnly />
                             </div>
                         </div>
-                        <div className="col-12 col-md-6">
-                            <div className="mb-3">
-                                <label data-translate="passengers" htmlFor="exampleFormControlInput1" className="form-label">Passengers</label>
-                                <input name="Passengers" type="number" className="form-control pointer" id="formGroupExampleInput" value={passengers} min="1" max="10" onChange={handlePassengerChange} />
-                            </div>
-                        </div>
+
                     </div>
 
                     {/* Row 2  */}
                     <div className="row">
-                        <div className="col-md-4 col-12">
+                        <div className="col-6">
+                            <div className="mb-3">
+                                <label data-translate="passengers" htmlFor="exampleFormControlInput1" className="form-label">Passengers</label>
+                                <input name="Passengers" type="number" className="form-control pointer" id="formGroupExampleInput" value={passengers} min="1" max="9" onChange={handlePassengerChange} />
+                            </div>
+                        </div>
+                        <div className="col-6">
                             <div className="mb-3">
                                 <MyCalendar onChange={handleCalendarChange} />
                             </div>
                         </div>
-                        <div className="col-md-3 col-12">
-                            <div className="mb-3">
-                                <label htmlFor="airlines" className="form-label">Airlines</label>
-                                <select name="Airlines" id="airlines" className="form-select pointer">
-                                    <option value="selectall" defaultValue>Select all</option>
-                                    <option value="VJ">VJ - Vietjet Air</option>
-                                    <option value="VN">VN - Vietnam Airlines</option>
-                                    <option value="QH">QH - Bamboo Airways</option>
-                                    <option value="VU">VU - Vietravel Airlines</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div className="col-md-5 col-12 d-flex align-items-end">
-                            <button name="search" type="submit" className="btn btn-primary mb-3 form-control"><i className="fa-solid fa-magnifying-glass"></i> <span>Search</span></button>
+                        <div className="col-12 d-flex align-items-end">
+                            <button name="search" type="submit" className="btn btn-primary mb-3 form-control"><span>Search</span></button>
                         </div>
                     </div>
 
@@ -103,10 +92,12 @@ const BookForm = () => {
                             <div className="mb-3">
                                 <div className="card card-body bookticket">
                                     <div className="row">
-                                        <div className="col-11 col-md-11">Lựa chọn thành phố khởi hành</div>
+                                        <div className="col-12">
+                                            <h5 className="text-primary">Lựa chọn thành phố khởi hành</h5>
+                                        </div>
                                     </div>
                                     <div className="row text-center">
-                                        <div className="col-12 col-md-4">
+                                        <div className="col-12">
                                             <div className="mb-3">
                                                 <label data-translate="departurepoint" htmlFor="exampleFormControlInput1" className="form-label mb-0"><span className="text-primary"><b>Miền Bắc</b></span></label>
                                                 <div className="mb-3">
@@ -120,7 +111,7 @@ const BookForm = () => {
                                             </div>
                                         </div>
                                         {/* Add more regions */}
-                                        <div className="col-12 col-md-4">
+                                        <div className="col-12">
                                             <div className="mb-3">
                                                 <label data-translate="departurepoint" htmlFor="exampleFormControlInput1" className="form-label mb-0"><span className="text-primary"><b>Miền Trung</b></span></label>
                                                 <div className="mb-3">
@@ -134,7 +125,7 @@ const BookForm = () => {
                                             </div>
                                         </div>
                                         {/* Add more regions */}
-                                        <div className="col-12 col-md-4">
+                                        <div className="col-12">
                                             <div className="mb-3">
                                                 <label data-translate="departurepoint" htmlFor="exampleFormControlInput1" className="form-label mb-0"><span className="text-primary"><b>Miền Nam</b></span></label>
                                                 <div className="mb-3">
@@ -159,10 +150,12 @@ const BookForm = () => {
                             <div className="mb-3">
                                 <div className="card card-body bookticket">
                                     <div className="row">
-                                        <div className="col-11 col-md-11">Lựa chọn điểm đến</div>
+                                        <div className="col-12">
+                                            <h5 className="text-primary">Lựa chọn điểm đến</h5>
+                                        </div>
                                     </div>
                                     <div className="row text-center">
-                                        <div className="col-12 col-md-4">
+                                        <div className="col-12">
                                             <div className="mb-3">
                                                 <label data-translate="destination" htmlFor="exampleFormControlInput1" className="form-label mb-0"><span className="text-primary"><b>Miền Bắc</b></span></label>
                                                 <div className="mb-3">
@@ -176,7 +169,7 @@ const BookForm = () => {
                                             </div>
                                         </div>
                                         {/* Add more regions */}
-                                        <div className="col-12 col-md-4">
+                                        <div className="col-12">
                                             <div className="mb-3">
                                                 <label data-translate="departurepoint" htmlFor="exampleFormControlInput1" className="form-label mb-0"><span className="text-primary"><b>Miền Trung</b></span></label>
                                                 <div className="mb-3">
@@ -190,7 +183,7 @@ const BookForm = () => {
                                             </div>
                                         </div>
                                         {/* Add more regions */}
-                                        <div className="col-12 col-md-4">
+                                        <div className="col-12">
                                             <div className="mb-3">
                                                 <label data-translate="departurepoint" htmlFor="exampleFormControlInput1" className="form-label mb-0"><span className="text-primary"><b>Miền Nam</b></span></label>
                                                 <div className="mb-3">
@@ -214,5 +207,5 @@ const BookForm = () => {
     );
 };
 
-export default BookForm;
+export default BookFormMini;
 

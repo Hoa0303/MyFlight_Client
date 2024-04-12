@@ -2,14 +2,9 @@ import React, { useState } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
-import logo from "../Assets/logo.png";
-import Button from "react-bootstrap/Button";
-import { Link } from "react-router-dom";
-import { CgGitFork } from "react-icons/cg";
-import { ImBlog } from "react-icons/im";
-import { AiOutlineUser, AiOutlineShoppingCart } from "react-icons/ai";
-
-import { CgFileDocument } from "react-icons/cg";
+import { NavLink, Link } from "react-router-dom";
+import Cookies from "js-cookie";
+import { NavDropdown } from 'react-bootstrap';
 
 function NavBar() {
   const [expand, updateExpanded] = useState(false);
@@ -23,6 +18,12 @@ function NavBar() {
     }
   }
 
+  function logout() {
+    Cookies.remove("userName");
+    Cookies.remove("userID");
+    window.location.href = '/';
+  }
+
   window.addEventListener("scroll", scrollHandler);
 
   return (
@@ -34,7 +35,6 @@ function NavBar() {
     >
       <Container>
         <Navbar.Brand href="/" className="d-flex">
-          {/* <img src={logo} className="img-fluid logo" alt="brand" /> */}
           <h1>My Flight</h1>
         </Navbar.Brand>
         <Navbar.Toggle
@@ -50,67 +50,81 @@ function NavBar() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ms-auto" defaultActiveKey="#home">
             <Nav.Item>
-              <Nav.Link as={Link} to="/" onClick={() => updateExpanded(false)}>
+              <NavLink
+                className="nav-link"
+                to="/"
+                onClick={() => updateExpanded(false)}>
                 Home
-              </Nav.Link>
+              </NavLink>
             </Nav.Item>
 
             <Nav.Item>
-              <Nav.Link
-                as={Link}
+              <NavLink
+                className="nav-link"
                 to="/about"
                 onClick={() => updateExpanded(false)}
-              >Flight
-              </Nav.Link>
+              >
+                Flight
+              </NavLink>
             </Nav.Item>
 
             <Nav.Item>
-              <Nav.Link
-                as={Link}
+              <NavLink
+                className="nav-link"
                 to="/news"
                 onClick={() => updateExpanded(false)}
-              >News
-              </Nav.Link>
+              >
+                News
+              </NavLink>
             </Nav.Item>
 
             <Nav.Item>
-              <Nav.Link
-                as={Link}
+              <NavLink
+                className="nav-link"
                 to="/guidance"
                 onClick={() => updateExpanded(false)}
-              >Guidance
-              </Nav.Link>
+              >
+                Guidance
+              </NavLink>
             </Nav.Item>
 
             <Nav.Item>
-              <Nav.Link
-                as={Link}
+              <NavLink
+                className="nav-link"
                 to="/contact"
                 onClick={() => updateExpanded(false)}
-              >Contact
-              </Nav.Link>
+              >
+                Contact
+              </NavLink>
             </Nav.Item>
 
             <Nav.Item>
-              <Nav.Link
-                href="https://soumyajitblogs.vercel.app/"
-                target="_blank"
-                rel="noreferrer"
-              >My Cart
-              </Nav.Link>
+              <NavLink
+                className="nav-link"
+                to="/cart"
+                onClick={() => updateExpanded(false)}
+              >
+                My Cart
+              </NavLink>
             </Nav.Item>
 
             <Nav.Item>
-              <Nav.Item>
-                <Nav.Link
-                  as={Link}
+              {Cookies.get("userName") ? (
+                <NavDropdown title={Cookies.get("userName")} id="basic-nav-dropdown">
+                  <NavDropdown.Item as={Link} to="/profile">Trang cá nhân</NavDropdown.Item>
+                  <NavDropdown.Item href="#" onClick={(logout)}>Đăng xuất</NavDropdown.Item>
+                </NavDropdown>
+              ) : (
+                <NavLink
+                  className="nav-link"
                   to="/login"
                   onClick={() => updateExpanded(false)}
                 >
-                  <AiOutlineUser style={{ marginBottom: "2px", }} />Login
-                </Nav.Link>
-              </Nav.Item>
+                  Login
+                </NavLink>
+              )}
             </Nav.Item>
+
           </Nav>
         </Navbar.Collapse>
       </Container>

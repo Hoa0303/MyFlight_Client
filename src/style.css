@@ -22,13 +22,18 @@ li {
   cursor: pointer;
 }
 
-
 .purple {
   color: var(--imp-text-color) !important;
 }
 
 button:focus {
   box-shadow: none !important;
+}
+
+.custom-border {
+  border: 2px solid rgb(78, 6, 78);
+  padding: 10px;
+  border-radius: 5px;
 }
 
 /* --------- */
@@ -148,6 +153,24 @@ button:focus {
   transform: rotate(-135deg) !important;
   opacity: 0.9 !important;
 }
+
+#responsive-navbar-nav a.active {
+  color: #c770f0 !important;
+}
+
+/* #responsive-navbar-nav a.active::after {
+  content: "";
+  position: relative;
+  display: block;
+  height: 5px;
+  width: 0;
+  border-radius: 16px;
+  background: #c95bf5;
+  bottom: 1px;
+  left: 0;
+  z-index: -1;
+  transition: all 0.3s ease-out 0s;
+} */
 
 @media (max-width: 767px) {
   .navbar {
@@ -429,6 +452,10 @@ button:focus {
 /* Footer */
 /* --------- */
 .footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   background-color: rgb(10, 4, 22);
   bottom: 0 !important;
   padding-top: 10px !important;

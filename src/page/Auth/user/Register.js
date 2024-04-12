@@ -1,14 +1,12 @@
-import { Container, Alert } from 'react-bootstrap';
-import { Link, useLocation } from "react-router-dom";
-import LoginForm from '../../../components/Auth/LoginForm';
+import { Container } from 'react-bootstrap';
+import { Link } from "react-router-dom";
+import RegisterForm from '../../../components/Auth/RegisterFrom';
 
 const RegisterPage = () => {
-    const location = useLocation();
-    const isRegisterPage = location.pathname === '/register';
+    const loginPagePath = '/login';
 
-    const handleLogin = () => {
-        alert('Login successful!');
-        // Redirect to home page or perform necessary action
+    const handleRes = () => {
+        window.location.href = loginPagePath;
     }
 
     return (
@@ -32,13 +30,10 @@ const RegisterPage = () => {
                         <div className="col-lg-6 mb-5 mb-lg-0 position-relative">
                             <div className="card bg-glass">
                                 <div className="card-body px-4 py-5 px-md-5">
-                                    <LoginForm onLogin={handleLogin} isRegisterPage={isRegisterPage} />
+                                    <RegisterForm onLogin={handleRes} />
                                     <div className="text-center">
                                         <p className='container my-2'>
-                                            {isRegisterPage ? "Already have an account? " : "Don't have an account yet? "}
-                                            <Link to={isRegisterPage ? '/login' : '/register'}>
-                                                {isRegisterPage ? "Login" : "Register"}
-                                            </Link>
+                                            Already have an account?<Link to='/login'> Login</Link>
                                         </p>
                                     </div>
                                 </div>

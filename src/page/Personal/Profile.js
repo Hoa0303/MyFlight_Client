@@ -1,8 +1,7 @@
 import { Container } from 'react-bootstrap';
-import { Link } from "react-router-dom";
-import LoginForm from '../../../components/Auth/LoginForm';
+import PersonalForm from '../../components/Personal/UpdateProfile';
 
-const LoginPage = () => {
+const Personal = () => {
 
     const handleLogin = () => {
         window.location.href = '/';
@@ -13,7 +12,7 @@ const LoginPage = () => {
             <section>
                 <div className="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
                     <div className="row gx-lg-5 align-items-center mb-5">
-                        <div className="col-lg-6 mb-5 mb-lg-0" style={{ zIndex: 10 }}>
+                        {/* <div className="col-lg-6 mb-5 mb-lg-0" style={{ zIndex: 10 }}>
                             <h1 className="my-5 display-5 fw-bold ls-tight" style={{ color: 'hsl(218, 81%, 95%)' }}>
                                 Welcome to <br />
                                 <span><strong className="purple">My Flight</strong></span>
@@ -24,18 +23,12 @@ const LoginPage = () => {
                                 dolorum consequatur nulla, neque debitis eos reprehenderit quasi
                                 ab ipsum nisi dolorem modi. Quos?
                             </p>
-                        </div>
+                        </div> */}
 
-                        <div className="col-lg-6 mb-5 mb-lg-0 position-relative">
+                        <div className="position-relative">
                             <div className="card bg-glass">
                                 <div className="card-body px-4 py-5 px-md-5">
-                                    <LoginForm onLogin={handleLogin} />
-                                    <div className="text-center">
-                                        <p className='container my-2'>
-                                            Don't have an account yet?
-                                            <Link to='/register'>Register</Link>
-                                        </p>
-                                    </div>
+                                    <PersonalForm onLogin={handleLogin} />
                                 </div>
                             </div>
                         </div>
@@ -46,4 +39,4 @@ const LoginPage = () => {
     );
 };
 
-export default LoginPage;
+export default Personal;

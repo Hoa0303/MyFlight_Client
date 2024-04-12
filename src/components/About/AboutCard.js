@@ -11,7 +11,7 @@ function AboutCard() {
             <span className="purple">About us </span>
             <br />
             <br />
-            Bringing you a <span className="purple">modern</span>, <span className="purple">comfortable</span> and <span className="purple"> connected</span>
+            Bringing you a <span className="purple">modern</span>, <span className="purple">comfortable</span> and <span className="purple"> connected </span>
             travel experience is one of our highest priorities and that’s why we continuously try to improve your experience when you book anything with us.
             <br />
             <br />
