@@ -2,6 +2,8 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import React, { useState, useEffect } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
+import BoyImg from '../../Assets/BoyImg.jpg'
+import GirlImg from '../../Assets/GrilImg.jpg'
 
 const ProfileForm = () => {
     const [name, setName] = useState('');
@@ -12,7 +14,7 @@ const ProfileForm = () => {
     const [phone, setPhone] = useState('');
     const [address, setAddress] = useState('');
     const [avatar, setAvatar] = useState(null);
-    const [avatarUrl, setAvatarUrl] = useState('http://bootdey.com/img/Content/avatar/avatar6.png'); // Default avatar URL for male
+    const [avatarUrl, setAvatarUrl] = useState(BoyImg);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -27,7 +29,7 @@ const ProfileForm = () => {
                 setAddress(response.data.address);
                 // Set avatar URL based on gender
                 if (response.data.gender === '0') {
-                    setAvatarUrl('https://bootdey.com/img/Content/avatar/avatar3.png'); // Female avatar URL
+                    setAvatarUrl(GirlImg);
                 }
             } catch (error) {
                 console.error('Error fetching user data:', error);
