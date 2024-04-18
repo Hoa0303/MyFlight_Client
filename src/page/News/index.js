@@ -96,6 +96,7 @@ function News() {
                     </Col>
                 </Row>
             </Container>
+            <Particle />
         </Container>
     );
 }

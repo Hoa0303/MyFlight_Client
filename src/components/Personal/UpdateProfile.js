@@ -43,7 +43,6 @@ const ProfileForm = () => {
             const userData = { name, email, cccd, gender, phone, address, dob };
 
             await axios.post('http://localhost:3000/api/users', userData);
-            // console.log(userData);
             Cookies.set('userName', name);
             window.location.reload();
         } catch (error) {

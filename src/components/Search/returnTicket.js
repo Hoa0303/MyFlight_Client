@@ -11,7 +11,7 @@ const ReturnTicket = () => {
     const location = useLocation();
     const formData = location.state?.formData;
     const [returnRoute, setReturn] = useState([]);
-    const [selectedTicketType, setSelectedTicketType] = useState("");
+    const [selectedTicketType, setSelectedTicketType] = useState("EC");
     const [selectedTickets, setSelectedTickets] = useState({});
 
     useEffect(() => {
@@ -90,6 +90,11 @@ const ReturnTicket = () => {
         // Lưu selectedTicketType vào cookies
         Cookies.set('ReturnType', selectedTicketType);
 
+        // Lưu thông tin tuyến
+        Cookies.set('Departure', formData.departurePoint);
+        Cookies.set('Destination', formData.destination);
+        Cookies.set('Passenger', formData.passengers);
+
         // Cập nhật trạng thái đã chọn cho vé
         setSelectedTickets(prevState => ({
             ...prevState,
@@ -127,19 +132,14 @@ const ReturnTicket = () => {
                                 <p>Đích đến: {formData.departurePoint}</p>
                             </div>
                             <div className="col-lg-2  col-md-6 col-sm-6 col-7 mt-3 mb-3 text-end">
-                                <h3>{route.GiaTuyenBay}đ</h3>
+                                <h3>{route.GiaTuyenBay * formData.passengers}đ</h3>
                                 <p>/{formData.passengers} khách</p>
                                 <p className="link-info">Chi tiết</p>
                             </div>
-                            {/* <div className="col-lg-2  col-md6 col-sm-6 col-5 mt-3 mb-3">
-                                <button className="btn btn-primary" onClick={() => handleSelectTicket()}>Chọn vé</button>
-                            </div> */}
                             <div className="col-lg-2  col-md6 col-sm-6 col-5 mt-3 mb-3">
-                                {/* Hiển thị nút "Đã chọn" nếu vé đã được chọn */}
                                 {selectedTickets[route._id] ? (
                                     <p className="btn btn-success">Đã chọn</p>
                                 ) : (
-                                    // Hiển thị nút "Chọn vé" nếu vé chưa được chọn
                                     <button className="btn btn-primary" onClick={() => handleSelectTicket(route._id)}>Chọn vé</button>
                                 )}
                             </div>

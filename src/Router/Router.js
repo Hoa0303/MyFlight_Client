@@ -14,6 +14,9 @@ import NotFound from "../page/404/404";
 import Personal from "../page/Personal/Profile";
 import SearchPage from "../page/Search";
 import BookPage from "../page/Book";
+import CheckoutPage from "../page/Book/checkout";
+import CartPage from "../page/MyCart";
+import PaymentSuccess from "../page/PaymentSuccess/PaymentSuccess";
 
 const AppRoutes = () => {
   return (
@@ -29,6 +32,9 @@ const AppRoutes = () => {
       <Route path="/profile" element={<Personal />} />
       <Route path="/search" element={<SearchPage />} />
       <Route path="/bookticket" element={<BookPage />} />
+      <Route path="/checkout" element={<CheckoutPage />} />
+      <Route path="/cart" element={<CartPage />} />
+      <Route path="/succsess" element={<PaymentSuccess />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

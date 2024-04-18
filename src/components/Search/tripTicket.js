@@ -121,20 +121,14 @@ const TripTicket = () => {
                                 <p>Đích đến: {formData.destination}</p>
                             </div>
                             <div className="col-lg-2  col-md-6 col-sm-6 col-7 mt-3 mb-3 text-end">
-                                <h3>{route.GiaTuyenBay}đ</h3>
+                                <h3>{(route.GiaTuyenBay * formData.passengers).toLocaleString('vi-VN')}đ</h3>
                                 <p>/{formData.passengers} khách</p>
                                 <p className="link-info">Chi tiết</p>
                             </div>
-                            {/* <div className="col-lg-2  col-md6 col-sm-6 col-5 mt-3 mb-3">
-                                <button className="btn btn-primary" onClick={() => handleSelectTicket(route._id)}>Chọn vé</button>
-                            </div> */}
-                            {/* Code hiển thị thông tin vé... */}
                             <div className="col-lg-2  col-md6 col-sm-6 col-5 mt-3 mb-3">
-                                {/* Hiển thị nút "Đã chọn" nếu vé đã được chọn */}
                                 {selectedTickets[route._id] ? (
                                     <p className="btn btn-success">Đã chọn</p>
                                 ) : (
-                                    // Hiển thị nút "Chọn vé" nếu vé chưa được chọn
                                     <button className="btn btn-primary" onClick={() => handleSelectTicket(route._id)}>Chọn vé</button>
                                 )}
                             </div>
