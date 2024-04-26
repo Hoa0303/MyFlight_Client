@@ -73,7 +73,7 @@ const SeatTrip = ({ updateTickets }) => {
                                 <Button
                                     className='m-1'
                                     key={seat.id}
-                                    variant={seat.MaDatVe !== "" ? 'danger' : (selectedSeats.includes(seat.ChoNgoi) ? 'success' : 'outline-primary')}
+                                    variant={seat.MaDatVe !== "" ? 'secondary' : (selectedSeats.includes(seat.ChoNgoi) ? 'success' : 'outline-primary')}
                                     onClick={() => {
                                         if (seat.MaDatVe === "") {
                                             handleSeatSelection(seat.ChoNgoi);

@@ -72,7 +72,7 @@ const Trip = () => {
                                 <p>Sân bay: {Cookies.get('Destination')}</p>
                             </div>
                             <div className="col-lg-3  col-md-6 col-12 mt-3 mb-3">
-                                <h3>{route.GiaTuyenBay * Cookies.get('Passenger')}đ</h3>
+                                <h3>{(route.GiaTuyenBay * Cookies.get('Passenger')).toLocaleString('vi-VN')}đ</h3>
                                 <p>/{Cookies.get("Passenger")} khách</p>
                                 <p className="link-info">Chi tiết</p>
                             </div>

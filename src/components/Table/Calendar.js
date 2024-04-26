@@ -36,6 +36,11 @@ const MyCalendar = ({ onChange }) => {
         onChange(formattedDates);
     };
 
+    const isPastDay = (date) => {
+        const today = new Date();
+        return date < today.setHours(0, 0, 0, 0);
+    };
+
     return (
         <div>
             <label htmlFor="departureDate" className="form-label">Date</label>
@@ -53,6 +58,8 @@ const MyCalendar = ({ onChange }) => {
                             onChange={handleDateChange}
                             value={dates}
                             selectRange={true}
+                            tileClassName={({ date }) => (isPastDay(date) ? 'past-day' : '')}
+                            tileDisabled={({ date }) => isPastDay(date)}
                         />
                     </div>
                 )}

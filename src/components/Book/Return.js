@@ -51,17 +51,6 @@ const Return = () => {
         fetchData();
     }, []);
 
-    // const handleSelectTicket = (routeId) => {
-    //     // Lưu IdReturnRoute vào cookies khi người dùng chọn vé
-    //     Cookies.set('IdReturnRoute', routeId);
-
-    //     // Cập nhật trạng thái đã chọn cho vé
-    //     setSelectedTickets(prevState => ({
-    //         ...prevState,
-    //         [routeId]: true
-    //     }));
-    // };
-
     return (
         <Container>
             <div>
@@ -84,7 +73,7 @@ const Return = () => {
                                 <p>Sân bay: {Cookies.get('Departure')}</p>
                             </div>
                             <div className="col-lg-3  col-md-6 col-12 mt-3 mb-3">
-                                <h3>{route.GiaTuyenBay * Cookies.get('Passenger')}đ</h3>
+                                <h3>{(route.GiaTuyenBay * Cookies.get('Passenger')).toLocaleString('vi-VN')}đ</h3>
                                 <p>/{Cookies.get("Passenger")} khách</p>
                                 <p className="link-info">Chi tiết</p>
                             </div>

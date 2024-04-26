@@ -47,9 +47,13 @@ button:focus {
 .seat-columns-container {
   display: flex;
   justify-content: space-around;
-  /* Đảm bảo các cột được sắp xếp song song với nhau */
 }
 
+.past-day {
+  background-color: #d3d3d3;
+  color: #a0a0a0;
+  pointer-events: none;
+}
 
 /* --------- */
 /*  Preloader */

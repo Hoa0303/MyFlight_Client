@@ -132,7 +132,7 @@ const ReturnTicket = () => {
                                 <p>Đích đến: {formData.departurePoint}</p>
                             </div>
                             <div className="col-lg-2  col-md-6 col-sm-6 col-7 mt-3 mb-3 text-end">
-                                <h3>{route.GiaTuyenBay * formData.passengers}đ</h3>
+                                <h3>{(route.GiaTuyenBay * formData.passengers).toLocaleString('vi-VN')}đ</h3>
                                 <p>/{formData.passengers} khách</p>
                                 <p className="link-info">Chi tiết</p>
                             </div>
